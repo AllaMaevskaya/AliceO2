@@ -67,14 +67,14 @@ void DigitizerTask::Exec(Option_t* option)
   if (mDigitsArray)
     mDigitsArray->clear();
 
-  Float_t EventTime;
-  mDigitizer.setEventTime(EventTime = mgr->GetEventTime());
+  Float_t EventTime = mgr->GetEventTime();
+  mDigitizer.setEventTime(EventTime);
+
 
 
   // the type of digitization is steered by the DigiParams object of the Digitizer
-  LOG(DEBUG) << "@@@@@@ Running digitization on new event " << mEventID << " from source " << mSourceID
-             << FairLogger::endl;
-  LOG(DEBUG) << "Event time " << EventTime << FairLogger::endl;
+  LOG(DEBUG) << "Running digitization on new event " << mEventID << " from source " << mSourceID
+             << " Event time " << EventTime << FairLogger::endl;
 
 
   /// RS: ATTENTION: this is just a trick until we clarify how the hits from different source are
