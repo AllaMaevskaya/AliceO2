@@ -24,7 +24,6 @@ using namespace o2::fit;
 DigitizerTask::DigitizerTask() : FairTask("FITDigitizerTask"), mDigitizer() {}
 DigitizerTask::~DigitizerTask()
 {
-  std::cout << "@@@@ DigitizerTask::~DigitizerTask()" << std::endl;
   if (mDigitsArray) {
     mDigitsArray->clear();
     delete mDigitsArray;
@@ -34,7 +33,6 @@ DigitizerTask::~DigitizerTask()
 /// Inititializes the digitizer and connects input and output container
 InitStatus DigitizerTask::Init()
 {
-  printf("@@@@ DigitizerTask::Init \n");
   FairRootManager* mgr = FairRootManager::Instance();
   if (!mgr) {
     LOG(ERROR) << "Could not instantiate FairRootManager. Exiting ..." << FairLogger::endl;
@@ -43,10 +41,8 @@ InitStatus DigitizerTask::Init()
 
   // TList * brlist = mgr->GetBranchNameList ();
   //  brlist->Print();
-  printf("@@@@ before read FIT Hits \n");
 
   mHitsArray = mgr->InitObjectAs<const std::vector<o2::fit::HitType>*>("FITHit");
-  printf("@@@@ read FIT Hits \n");
 
   if (!mHitsArray) {
     LOG(ERROR) << "FIT hits not registered in the FairRootManager. Exiting ..." << FairLogger::endl;
@@ -70,7 +66,7 @@ void DigitizerTask::Exec(Option_t* option)
   Float_t EventTime = mgr->GetEventTime();
   mDigitizer.setEventTime(EventTime);
 
-
+  mDigitsArray->clear();
 
   // the type of digitization is steered by the DigiParams object of the Digitizer
   LOG(DEBUG) << "Running digitization on new event " << mEventID << " from source " << mSourceID
