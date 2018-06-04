@@ -59,13 +59,19 @@ InitStatus DigitizerTask::Init()
 void DigitizerTask::Exec(Option_t* option)
 {
   FairRootManager* mgr = FairRootManager::Instance();
-  mDigitizer.setEventTime(mgr->GetEventTime());
+
+  if (mDigitsArray)
+    mDigitsArray->clear();
+
+  Float_t EventTime = mgr->GetEventTime();
+  mDigitizer.setEventTime(EventTime);
 
   mDigitsArray->clear();
 
   // the type of digitization is steered by the DigiParams object of the Digitizer
   LOG(DEBUG) << "Running digitization on new event " << mEventID << " from source " << mSourceID
-             << FairLogger::endl;
+             << " Event time " << EventTime << FairLogger::endl;
+
 
   /// RS: ATTENTION: this is just a trick until we clarify how the hits from different source are
   /// provided and identified.
