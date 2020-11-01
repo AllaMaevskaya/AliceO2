@@ -159,22 +159,22 @@ void CTFCoder::decompress(const CompressedDigits& cd, VDIG& digitVec, VCHAN& cha
     firstEntry = channelVec.size();
     uint8_t chID = 0;
     int amplA = 0, amplC = 0, timeA = 0, timeC = 0;
-   for (uint8_t ic = 0; ic < cd.nChan[idig]; ic++) {
+    for (uint8_t ic = 0; ic < cd.nChan[idig]; ic++) {
       auto icc = channelVec.size();
       const auto& chan = channelVec.emplace_back((chID += cd.idChan[icc]), cd.cfdTime[icc], cd.qtcAmpl[icc], cd.qtcChain[icc]);
       //
       // rebuild digit
       //  if (std::abs(chan.CFDTime) < Geometry::mTime_trg_gate) {
-        if (chan.ChId < 4 * uint8_t(Geometry::NCellsA)) { // A side
-          amplA += chan.QTCAmpl;
-          timeA += chan.CFDTime;
-          trig.nChanA++;
+      if (chan.ChId < 4 * uint8_t(Geometry::NCellsA)) { // A side
+        amplA += chan.QTCAmpl;
+        timeA += chan.CFDTime;
+        trig.nChanA++;
 
-        } else {
-          amplC += chan.QTCAmpl;
-          timeC += chan.CFDTime;
-          trig.nChanC++;
-        }
+      } else {
+        amplC += chan.QTCAmpl;
+        timeC += chan.CFDTime;
+        trig.nChanC++;
+      }
         // }
     }
     if (trig.nChanA) {
