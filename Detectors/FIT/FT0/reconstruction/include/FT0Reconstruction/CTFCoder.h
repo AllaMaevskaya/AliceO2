@@ -175,7 +175,7 @@ void CTFCoder::decompress(const CompressedDigits& cd, VDIG& digitVec, VCHAN& cha
         timeC += chan.CFDTime;
         trig.nChanC++;
       }
-        // }
+      // }
     }
     if (trig.nChanA) {
       trig.timeA = timeA / trig.nChanA;
