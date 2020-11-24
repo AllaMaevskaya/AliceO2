@@ -170,12 +170,12 @@ void CTFCoder::decompress(const CompressedDigits& cd, VDIG& digitVec, VCHAN& cha
         timeA += chan.CFDTime;
         trig.nChanA++;
 
-        } else {
-          amplC += chan.QTCAmpl;
-          timeC += chan.CFDTime;
-          trig.nChanC++;
-        }
-        // }
+      } else {
+        amplC += chan.QTCAmpl;
+        timeC += chan.CFDTime;
+        trig.nChanC++;
+      }
+      // }
     }
     if (trig.nChanA) {
       trig.timeA = timeA / trig.nChanA;
