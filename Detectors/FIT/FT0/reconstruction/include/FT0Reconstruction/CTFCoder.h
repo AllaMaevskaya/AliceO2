@@ -165,10 +165,10 @@ void CTFCoder::decompress(const CompressedDigits& cd, VDIG& digitVec, VCHAN& cha
       //
       // rebuild digit
       //  if (std::abs(chan.CFDTime) < Geometry::mTime_trg_gate) {
-        if (chan.ChId < 4 * uint8_t(Geometry::NCellsA)) { // A side
-          amplA += chan.QTCAmpl;
-          timeA += chan.CFDTime;
-          trig.nChanA++;
+      if (chan.ChId < 4 * uint8_t(Geometry::NCellsA)) { // A side
+        amplA += chan.QTCAmpl;
+        timeA += chan.CFDTime;
+        trig.nChanA++;
 
         } else {
           amplC += chan.QTCAmpl;
