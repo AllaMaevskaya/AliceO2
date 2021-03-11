@@ -45,7 +45,7 @@ BOOST_AUTO_TEST_CASE(RAWTest)
       int bc = bcd.getBC();
       auto channels = bcd.getBunchChannelData(digitsCh);
       nch += channels.size();
-     }
+    }
   }
   gSystem->Exec("$O2_ROOT/bin/o2-ft0-digi2raw --file-per-link");
   gSystem->Exec("$O2_ROOT/bin/o2-raw-file-reader-workflow -b --input-conf FT0raw.cfg|$O2_ROOT/bin/o2-ft0-flp-dpl-workflow -b");
@@ -70,5 +70,4 @@ BOOST_AUTO_TEST_CASE(RAWTest)
 
   BOOST_CHECK(nbc == nbc2);
   BOOST_CHECK(nch == nch2);
-}
-;
+};
