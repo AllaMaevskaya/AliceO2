@@ -33,12 +33,16 @@ class FITCalibrationApi
   FITCalibrationApi(FITCalibrationApi&&) = delete;
 
   static void init();
-  static void setProcessingTimestamp(unsigned long tf) {
-    LOG(INFO)<<"@@@ setProcessingTimestamp "<<tf;
-    mProcessingTimestamp = tf; }
-  [[nodiscard]] static unsigned long getProcessingTimestamp() {
-    LOG(INFO)<<" @@@ getProcessingTimestamp "<<mProcessingTimestamp;
-    return mProcessingTimestamp; }
+  static void setProcessingTimestamp(unsigned long tf)
+  {
+    LOG(INFO) << "@@@ setProcessingTimestamp " << tf;
+    mProcessingTimestamp = tf;
+  }
+  [[nodiscard]] static unsigned long getProcessingTimestamp()
+  {
+    LOG(INFO) << " @@@ getProcessingTimestamp " << mProcessingTimestamp;
+    return mProcessingTimestamp;
+  }
 
   template <typename CalibrationObjectType>
   [[nodiscard]] static const char* getObjectPath();
