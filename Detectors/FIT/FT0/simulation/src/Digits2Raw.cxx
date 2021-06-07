@@ -170,7 +170,7 @@ void Digits2Raw::convertDigits(o2::ft0::Digit bcdigits,
     int nlink = lut.getLink(pmchannels[ich].ChId);
     int ep = lut.getEP(pmchannels[ich].ChId);
     if (nlink != oldlink || ep != oldendpoint) {
-      if (oldlink >= 0 ) {
+      if (oldlink >= 0) {
         uint nGBTWords = uint((nchannels + 1) / 2);
         LOG(DEBUG) << " oldlink " << oldlink << " old EP " << oldendpoint << " nGBTWords " << nGBTWords << " new link " << nlink << " ep  " << ep;
         if ((nchannels % 2) == 1) {
