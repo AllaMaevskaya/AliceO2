@@ -26,7 +26,6 @@ using namespace o2::ft0;
 FT0CalibTimeSlewing::FT0CalibTimeSlewing()
 {
   for (int iCh = 0; iCh < NCHANNELS; iCh++) {
-    mFractionUnderPeak[iCh] = -100.;
     mSigmaPeak[iCh] = -1.;
     mTimeAmpHist[iCh] = new TH2F(Form("hTimeAmpHist%d", iCh), Form("TimeAmp%d", iCh),
                                  NUMBER_OF_HISTOGRAM_BINS_X, 0, HISTOGRAM_RANGE_X,
@@ -77,7 +76,6 @@ FT0CalibTimeSlewing& FT0CalibTimeSlewing::operator+=(const FT0CalibTimeSlewing& 
 {
   for (int i = 0; i < NCHANNELS; i++) {
     mTimeSlewing[i] = other.mTimeSlewing[i];
-    mFractionUnderPeak[i] = other.mFractionUnderPeak[i];
     mSigmaPeak[i] = other.mSigmaPeak[i];
   }
   return *this;
@@ -91,13 +89,18 @@ void FT0CalibTimeSlewing::mergeFilesWithTree()
   for (Int_t i = 0; i < mNfiles; i++) {
     TFile* file =
       TFile::Open(Form("%s_%d.root", mSingleFileName.c_str(), i));
-    if (file)
+    if (file) {
       merger.AddAdoptFile(file);
+    }
   }
-  if (!merger.Merge())
+  if (!merger.Merge()) {
     LOG(FATAL) << "Could not merge files";
+  }
   TFile mMergedFile{merger.GetOutputFileName()};
   TTree* tr = (TTree*)mMergedFile.Get("treeCollectedCalibInfo");
+  if (!tr) {
+    LOG(FATAL) << "Could not get tree with calib info";
+  }
   fillHistos(tr);
 }
 
