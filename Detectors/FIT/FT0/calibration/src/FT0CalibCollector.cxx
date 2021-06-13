@@ -43,7 +43,7 @@ void FT0CalibInfoSlot::fill(const gsl::span<const o2::ft0::FT0CalibrationInfoObj
     offsPrev = offset;
     chPrev = ch;
     auto it = mFT0CollectedCalibInfoSlot.emplace(mFT0CollectedCalibInfoSlot.begin() + offset, data[ord[i]].getChannelIndex(), data[ord[i]].getTime(), data[ord[i]].getAmp());
-     mEntriesSlot[ch]++;
+    mEntriesSlot[ch]++;
   }
 }
 //_____________________________________________
@@ -121,9 +121,9 @@ bool FT0CalibCollector::hasEnoughData(const Slot& slot) const
 
   // We define that we have enough data if the tree is big enough.
   // each FT0CalibrationInfoObject is composed of two int8 and one int16 --> 32 bytes
-  // E.g. supposing that we have 500000 entries per channel  --> 500 eneries per one amplitude bin 
+  // E.g. supposing that we have 500000 entries per channel  --> 500 eneries per one amplitude bin
   // we can check if we have  500000*o2::ft0::Geometry::NCHANNELS entries in the vector
- 
+
   if (mTest) {
     return true;
   }
@@ -139,7 +139,7 @@ bool FT0CalibCollector::hasEnoughData(const Slot& slot) const
 //_____________________________________________
 void FT0CalibCollector::finalizeSlot(Slot& slot)
 {
- 
+
   o2::ft0::FT0CalibInfoSlot* c = slot.getContainer();
   mFT0CollectedCalibInfo = c->getCollectedCalibInfoSlot();
   LOG(INFO) << "vector of  received with size = " << mFT0CollectedCalibInfo.size();
