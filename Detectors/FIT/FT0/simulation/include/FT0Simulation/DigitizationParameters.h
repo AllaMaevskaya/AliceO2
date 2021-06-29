@@ -27,8 +27,10 @@ struct DigitizationParameters
   float mAmp_trsh = 100;                                     // [ph.e]
   float mAmpRecordLow = -4;                                  // integrate charge from
   float mAmpRecordUp = 15;                                   // to [ns]
-  float mC_side_cable_cmps = 2.86;   //ns
-  float mA_side_cable_cmps = 11.110; //ns
+  //  float mC_side_cable_cmps = 2.86;   //ns
+  //  float mA_side_cable_cmps = 11.110; //ns
+  float mC_side_cable_cmps = 18.9;   //ns
+  float mA_side_cable_cmps = 4.9; //ns
   int mtrg_central_trh = 600.;       // channels
   int mtrg_semicentral_trh = 300.;   // channels
 
